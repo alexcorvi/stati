@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Lamassau</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="assets/css/main.css"/>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body id="top">
+		<header id="header">
+			<div class="inner">
+				<a href="#" class="image avatar"><img src="https://avatars0.githubusercontent.com/u/25783017?v=3"/></a>
+				<h1>Lamassau</h1>
+			</div>
+		</header>
+		<div id="main" class="articles-list">
+			{{#each posts}}
+				<article>
+					<h3><a href="./blog/{{this.permlink}}.html">{{this.title}}</a></h3>
+					<b>by <a target="_blank" href="https://github.com/{{this.author}}">@{{this.author}}</a></b>
+				</article>
+			{{/each}}
+		</div>
+	</body>
+</html>

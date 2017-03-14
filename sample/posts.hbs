@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>{{title}}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="../assets/css/main.css"/>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body id="top">
+		<header id="header">
+			<div class="inner">
+				<h1>{{title}}</h1>
+				<a class="avatar image" id="author-anchor"><img id="avatar" src="https://avatars0.githubusercontent.com/u/25783017?v=3"/></a>
+                <h2 id="author-name">{{author}}</h2>
+                <p id="author-bio"></p>
+			</div>
+            <footer id="footer">
+				<div class="inner">
+					<ul class="copyright">
+						<li>© Lamassau</li><li><a href="../index.html">Home</a></li>
+					</ul>
+				</div>
+			</footer>
+		</header>
+		<div id="main">
+			{{{body}}}
+		</div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+        <script>
+            // author bio avatar and name from GitHub API
+            var XHR = new XMLHttpRequest();
+            XHR.addEventListener("load", function(){
+                var result = JSON.parse(this.responseText);
+                if(result.avatar_url) document.getElementById("avatar").setAttribute("src",result.avatar_url+"&s=200");
+                if(result.bio) document.getElementById("author-bio").innerHTML = result.bio;
+                if(result.name) document.getElementById("author-name").innerHTML = result.name;
+                if(result.html_url) {
+                    document.getElementById("author-anchor").setAttribute("href",result.html_url);
+                    document.getElementById("author-anchor").setAttribute("target","_blank");
+                }
+            });
+            XHR.open("GET", "https://api.github.com/users/{{author}}");
+            XHR.send();
+        </script>
+        <script>
+            // add syntax highlighting
+            hljs.initHighlightingOnLoad();
+        </script>
+        <script>
+        document.querySelectorAll("h2,h3,h4,h5").forEach(($el)=>{
+            $el.innerHTML = `<a href="${location.pathname}#${$el.id}">${$el.innerHTML}</a>`
+        });
+        </script>
+	</body>
+</html>
